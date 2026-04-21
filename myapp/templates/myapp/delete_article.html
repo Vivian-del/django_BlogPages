@@ -1,0 +1,28 @@
+<!-- f:\PyCharm\django\my_project\myapp\templates\myapp\delete_article.html -->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>删除文章</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .alert { background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px; }
+        .btn { display: inline-block; padding: 8px 16px; text-decoration: none; border-radius: 4px; margin-right: 10px; }
+        .btn-danger { background-color: #dc3545; color: white; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+    </style>
+</head>
+<body>
+    <a href="{% url 'article_detail' article.pk %}" class="back-link btn btn-secondary">← 返回文章</a>
+    <h1>删除文章</h1>
+    <div class="alert">
+        <p>您确定要删除文章 <strong>{{ article.title }}</strong> 吗？</p>
+        <p>此操作不可恢复。</p>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">确认删除</button>
+        <a href="{% url 'article_detail' article.pk %}" class="btn btn-secondary">取消</a>
+    </form>
+</body>
+</html>

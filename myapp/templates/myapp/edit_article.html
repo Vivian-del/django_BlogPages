@@ -1,0 +1,58 @@
+<!-- f:\PyCharm\django\my_project\myapp\templates\myapp\edit_article.html -->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑文章</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        form { margin-top: 20px; }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0069d9;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'article_detail' article.pk %}" class="back-link">← 返回文章</a>
+    <h1>编辑文章</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="title" value="{{ article.title }}" required>
+        <textarea name="content" rows="15" required>{{ article.content }}</textarea>
+        <button type="submit">保存修改</button>
+    </form>
+</body>
+</html>

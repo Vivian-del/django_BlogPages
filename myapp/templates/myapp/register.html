@@ -1,0 +1,44 @@
+<!-- f:\PyCharm\django\my_project\myapp\templates\myapp\register.html -->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; }
+        form { margin-top: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button { margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; }
+        button:hover { background-color: #0069d9; }
+        .error { color: red; margin-top: 5px; }
+        .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: #007bff; }
+    </style>
+</head>
+<body>
+    <a href="{% url 'article_list' %}" class="back-link">← 返回首页</a>
+    <h1>用户注册</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.errors %}
+            <div class="error">{{ field.errors }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit">注册</button>
+    </form>
+    <p style="margin-top: 20px;">已有账户？<a href="{% url 'login' %}">登录</a></p>
+</body>
+</html>
